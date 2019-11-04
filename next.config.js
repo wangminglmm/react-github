@@ -58,6 +58,14 @@ if (typeof require !== 'undefined') {
 module.exports = withBundleAnalyzer(withCss({
   webpack(config) {
     config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+    config.module.rules.push({
+      test: /\.jsx?$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/,
+      enforce: 'pre',
+    })
+    return config
     return config
   },
   publicRuntimeConfig: {
